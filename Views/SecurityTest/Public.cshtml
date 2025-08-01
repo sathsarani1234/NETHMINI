@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Security Test - Public Page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card border-success">
+            <div class="card-header bg-success text-white text-center">
+                <h3><i class="fas fa-globe"></i> Public Access Test</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> @ViewBag.Message
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>User Status:</h5>
+                        <p class="badge @(ViewBag.UserStatus == "Authenticated" ? "bg-success" : "bg-secondary")">
+                            @ViewBag.UserStatus
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>User Identity:</h5>
+                        <p class="text-info">@ViewBag.UserName</p>
+                    </div>
+                </div>
+
+                <h5>Access Control Test Results:</h5>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-globe text-success"></i> Public Page Access</span>
+                        <span class="badge bg-success">✓ PASS</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-lock text-warning"></i> Protected Page Access</span>
+                        <a href="/SecurityTest/Protected" class="btn btn-sm btn-primary">Test Protected</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-users text-info"></i> Employee Management</span>
+                        <a href="/Employee" class="btn btn-sm btn-primary">Test Employee</a>
+                    </li>
+                </ul>
+
+                <div class="mt-4">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> You are logged in as: <strong>@User.Identity.Name</strong>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i> You are not logged in. 
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-sm btn-primary ms-2">Login</a>
+                        </div>
+                    }
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    @if (User.Identity?.IsAuthenticated != true)
+                    {
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-primary me-md-2">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a asp-controller="Account" asp-action="Register" class="btn btn-success">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

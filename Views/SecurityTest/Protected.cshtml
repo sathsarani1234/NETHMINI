@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Security Test - Protected Page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark text-center">
+                <h3><i class="fas fa-shield-alt"></i> Protected Access Test</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-lock"></i> @ViewBag.Message
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>User Status:</h5>
+                        <p class="badge bg-success">@ViewBag.UserStatus</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>User Identity:</h5>
+                        <p class="text-success">@ViewBag.UserName</p>
+                    </div>
+                </div>
+
+                <h5>Access Control Test Results:</h5>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-shield-alt text-success"></i> Authentication Required</span>
+                        <span class="badge bg-success">✓ PASS</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-user text-success"></i> User Authenticated</span>
+                        <span class="badge bg-success">✓ PASS</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-key text-success"></i> Access Granted</span>
+                        <span class="badge bg-success">✓ PASS</span>
+                    </li>
+                </ul>
+
+                <div class="alert alert-success mt-4">
+                    <i class="fas fa-check-circle"></i> 
+                    <strong>Success!</strong> You have successfully accessed a protected page.
+                    Only authenticated users can see this content.
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                    <a href="/SecurityTest/Public" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-globe"></i> Public Test
+                    </a>
+                    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary me-md-2">
+                        <i class="fas fa-users"></i> Employee Management
+                    </a>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

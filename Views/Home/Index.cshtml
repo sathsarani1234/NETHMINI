@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="display-4">Welcome to Employee Management System</h1>
+            
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <p class="lead">Welcome back, @User.Identity.Name! Ready to manage your employees?</p>
+                <div class="mt-4">
+                    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary btn-lg">
+                        <i class="fas fa-users"></i> Go to Employee Management
+                    </a>
+                </div>
+            }
+            else
+            {
+                <p class="lead">A comprehensive solution for managing employee information with full CRUD operations.</p>
+                <div class="mt-4">
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-lg me-3">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-success btn-lg">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+            }
+            
+            @if (User.Identity?.IsAuthenticated != true)
+            {
+            <div class="row mt-5">
+                <div class="col-md-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Manage Employees</h5>
+                            <p class="card-text">Add, view, edit, and delete employee records with ease.</p>
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-primary">
+                                <i class="fas fa-sign-in-alt"></i> Login to Access
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+           
+            @if (ViewContext.HttpContext.Request.Query.ContainsKey("test"))
+            {
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card border-info">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="fas fa-shield-alt"></i> Security & Access Control Testing</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Test the access control implementation:</p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <a href="/SecurityTest/Public" class="btn btn-success me-md-2">
+                                    <i class="fas fa-globe"></i> Test Public Access
+                                </a>
+                                <a href="/SecurityTest/Protected" class="btn btn-warning me-md-2">
+                                    <i class="fas fa-lock"></i> Test Protected Access
+                                </a>
+                                <a href="/Employee" class="btn btn-primary">
+                                    <i class="fas fa-users"></i> Test Employee Access
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

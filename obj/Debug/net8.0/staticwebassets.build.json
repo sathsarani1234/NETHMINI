@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "7o02UsIvP0FqYrW1JSAu+/7L4IFxXN5KBrodRIWbnAE=",
+  "Source": "EmployeeAPI",
+  "BasePath": "_content/EmployeeAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "EmployeeAPI\\wwwroot",
+      "Source": "EmployeeAPI",
+      "ContentRoot": "C:\\XAMPP_New\\htdocs\\new1\\new1\\wwwroot\\",
+      "BasePath": "_content/EmployeeAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
